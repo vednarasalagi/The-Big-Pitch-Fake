@@ -1,0 +1,160 @@
+export const DEFAULT_PRODUCTS = [
+  {
+    id: 'prod-001',
+    title: 'The Executive Wireless Pitch Presenter',
+    tagline: 'CNC milled aerospace aluminum clicker with dual-haptic timer & green laser pointer.',
+    description: 'Engineered specifically for boardroom pitches and keynote stages. Features vibration cues at 5-minute intervals, 30-meter RF wireless range, custom silent silicone switches, and rechargeable USB-C fast charge.',
+    category: 'Hardware & Tech',
+    price: 3499,
+    original_price: 5999,
+    stock_quantity: 35,
+    sku: 'TBP-HW-001',
+    materials: 'Aerospace Anodized 6063 Aluminum',
+    dimensions: '132 x 28 x 14 mm',
+    weight: '85 grams',
+    shipping_time: '2-3 business days',
+    cover_image: 'https://images.unsplash.com/photo-1588508065123-287b28e013da?auto=format&fit=crop&w=1200&q=80',
+    features: [
+      'Precision 5mW Green Laser Pointer',
+      'Vibration Haptic Pace Countdown',
+      'Universal Bluetooth 5.2 + 2.4GHz Dongle',
+      'USB-C Fast Charging (90-day battery)',
+      'Matte Black Hard Shell Carry Case'
+    ],
+    badge: 'Bestseller',
+    is_active: true
+  },
+  {
+    id: 'prod-002',
+    title: 'Archival Leather Founder Pitch Journal',
+    tagline: 'Full-grain Tuscan bridle leather notebook with 240 GSM acid-free dot grid paper.',
+    description: 'Handcrafted for founders drafting term sheets, product wireframes, and pitch decks. Includes expandable back pocket for business cards, dual bookmark ribbons, and lay-flat 180-degree Smyth-sewn binding.',
+    category: 'Executive Stationery',
+    price: 1899,
+    original_price: 3299,
+    stock_quantity: 50,
+    sku: 'TBP-ST-002',
+    materials: 'Vegetable-Tanned Full-Grain Leather',
+    dimensions: 'A5 (210 x 148 mm)',
+    weight: '420 grams',
+    shipping_time: '2-4 business days',
+    cover_image: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=1200&q=80',
+    features: [
+      '192 Numbered Dot-Grid Pages (120 GSM)',
+      'Fountain Pen Friendly, No Bleed-Through',
+      'Solid Brass Dual Bookmark Charms',
+      'Integrated Elastic Pen Loop',
+      'Debossed THE BIG PITCH Monogram'
+    ],
+    badge: 'Crafted',
+    is_active: true
+  },
+  {
+    id: 'prod-003',
+    title: 'Studio-Grade USB-C Pitch Condenser Mic',
+    tagline: 'Broadcast-quality cardioid microphone designed for flawless investor Zoom calls.',
+    description: 'Eliminate muffled pitch calls. Equipped with a custom 25mm condenser capsule, zero-latency headphone monitoring jack, instant tap-to-mute touch sensor, and an integrated heavy zinc-alloy anti-vibration stand.',
+    category: 'Hardware & Tech',
+    price: 4999,
+    original_price: 8999,
+    stock_quantity: 20,
+    sku: 'TBP-HW-003',
+    materials: 'Zinc Alloy & Steel Mesh',
+    dimensions: '180 x 90 x 90 mm',
+    weight: '680 grams',
+    shipping_time: '2-3 business days',
+    cover_image: 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=1200&q=80',
+    features: [
+      '24-Bit / 96kHz Studio Audio Resolution',
+      'Hardware Tap-to-Mute with Status LED',
+      'Real-Time 3.5mm Headphone Jack',
+      'Heavy Vibration-Dampening Metal Base',
+      'Braided 2M USB-C to USB-C Cable'
+    ],
+    badge: 'Essential',
+    is_active: true
+  },
+  {
+    id: 'prod-004',
+    title: 'THE BIG PITCH Stealth Founder Hoodie (450 GSM)',
+    tagline: 'Ultra-heavyweight 100% French Terry cotton tailored in a modern boxy silhouette.',
+    description: 'The uniform for late-night code sprints and VC office visits. Custom pre-shrunk 450 GSM combed cotton with hidden zippered tech pockets, double-layer hood, and discreet tonal embroidered logo.',
+    category: 'Founder Apparel',
+    price: 2799,
+    original_price: 4499,
+    stock_quantity: 40,
+    sku: 'TBP-AP-004',
+    materials: '100% Organic French Terry Cotton (450 GSM)',
+    dimensions: 'Sizes S, M, L, XL, XXL',
+    weight: '850 grams',
+    shipping_time: '3-5 business days',
+    cover_image: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=1200&q=80',
+    features: [
+      'Ultra-Heavy 450 GSM Combed Cotton',
+      'Concealed YKK Zippered Passport Pocket',
+      'Ribbed Side Panels for Mobility',
+      'Double-Layer Structural Hood',
+      'Pre-Shrunk Cold Garment Dye'
+    ],
+    badge: 'Top Rated',
+    is_active: true
+  },
+  {
+    id: 'prod-005',
+    title: 'Anodized Aluminum Dual-Angle Laptop Stand',
+    tagline: 'CNC machined solid aluminum stand engineered for optimal ergonomic camera angle.',
+    description: 'Elevate your laptop screen to natural eye-level for video pitches and investor demonstrations. Features non-slip silicone pads, airflow cooling channel cutouts, and foldable flat profile.',
+    category: 'Desk & Studio',
+    price: 2199,
+    original_price: 3999,
+    stock_quantity: 60,
+    sku: 'TBP-DK-005',
+    materials: 'Space Black Sandblasted Aluminum',
+    dimensions: '260 x 225 x 145 mm',
+    weight: '490 grams',
+    shipping_time: '2-4 business days',
+    cover_image: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=1200&q=80',
+    features: [
+      'Solid 4mm Unibody Aircraft Aluminum',
+      'Open Vent Airflow Heat Dissipation',
+      'Compatible with Laptops 11 to 17 Inches',
+      'Anti-Scratch Silicone Protective Pads',
+      'Foldable Flat for Travel Briefcase'
+    ],
+    badge: 'Popular',
+    is_active: true
+  },
+  {
+    id: 'prod-006',
+    title: 'Merino Wool & Vegan Leather Desk Pad (900x400)',
+    tagline: 'Dual-sided desk mat combining natural thermal felt and scratch-resistant matte leather.',
+    description: 'Transform your workspace into an executive pitch station. Smooth mouse tracking, water-resistant surface coating, and precision stitched edge reinforcement prevent fraying.',
+    category: 'Desk & Studio',
+    price: 1599,
+    original_price: 2899,
+    stock_quantity: 75,
+    sku: 'TBP-DK-006',
+    materials: 'Recycled Merino Felt & Vegan PU Leather',
+    dimensions: '900 x 400 x 3 mm',
+    weight: '380 grams',
+    shipping_time: '2-4 business days',
+    cover_image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=1200&q=80',
+    features: [
+      'Generous 900 x 400 mm Surface Area',
+      'Reversible Dual-Sided Texture',
+      'Spill-Resistant Hydrophobic Coating',
+      'Precision-Stitched Anti-Fray Perimeter',
+      'Includes Vegan Leather Cable Organizer Strap'
+    ],
+    badge: 'Staff Pick',
+    is_active: true
+  }
+];
+
+export const CATEGORIES = [
+  'All Products',
+  'Hardware & Tech',
+  'Executive Stationery',
+  'Founder Apparel',
+  'Desk & Studio'
+];
