@@ -82,7 +82,7 @@ export default function AdminPortal({
     is_active: true
   });
 
-  if (!currentUser || !isAdmin) {
+  if (!currentUser || !isAdmin || currentUser.email?.toLowerCase() === 'test@gmail.com') {
     return (
       <div className="container" style={{ padding: '80px 24px', maxWidth: '480px', textAlign: 'center' }}>
         <div className="glass-card" style={{ padding: '40px 30px' }}>

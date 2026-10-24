@@ -74,7 +74,7 @@ export default function Navbar({
           </button>
 
           {/* Admin Panel - ONLY VISIBLE IF ACCOUNT HAS ADMIN ACCESS */}
-          {isAdmin && (
+          {isAdmin && currentUser?.email?.toLowerCase() !== 'test@gmail.com' && (
             <button 
               className={`btn btn-sm ${activeTab === 'admin' ? 'btn-primary' : 'btn-outline'}`}
               onClick={() => setActiveTab('admin')}

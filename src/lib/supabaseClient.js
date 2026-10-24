@@ -6,7 +6,22 @@ const getConfig = () => {
   const envUrl = import.meta.env.VITE_SUPABASE_URL || '';
   const envKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
   const envRzp = import.meta.env.VITE_RAZORPAY_KEY_ID || '';
-  const envAdminEmails = import.meta.env.VITE_ADMIN_EMAILS || 'info.sigtrek@gmail.com,admin@gmail.com';
+  const envAdminEmails = import.meta.env.VITE_ADMIN_EMAILS || 'info.sigtrek@gmail.com';
+
+  // Clear legacy admin rights for test email from localStorage
+  try {
+    const storedAdmin = localStorage.getItem('tbp_admin_emails');
+    if (storedAdmin && storedAdmin.toLowerCase().includes('test@gmail.com')) {
+      const cleaned = storedAdmin
+        .split(',')
+        .map((e) => e.trim().toLowerCase())
+        .filter((e) => Boolean(e) && e !== 'test@gmail.com')
+        .join(',');
+      localStorage.setItem('tbp_admin_emails', cleaned);
+    }
+  } catch (e) {
+    // ignore storage errors
+  }
 
   const localUrl = localStorage.getItem('tbp_supabase_url') || '';
   const localKey = localStorage.getItem('tbp_supabase_key') || '';
@@ -16,7 +31,7 @@ const getConfig = () => {
   const emailsList = (localAdminEmails || envAdminEmails)
     .split(',')
     .map((e) => e.trim().toLowerCase())
-    .filter(Boolean);
+    .filter((e) => Boolean(e) && e !== 'test@gmail.com');
 
   return {
     supabaseUrl: localUrl || envUrl,
@@ -42,13 +57,20 @@ export const getRazorpayKey = () => {
 };
 
 export const getAdminEmails = () => {
-  return getConfig().adminEmails;
+  return getConfig().adminEmails.filter((e) => e !== 'test@gmail.com');
 };
 
 export const checkIsAdmin = (user) => {
   if (!user || !user.email) return false;
+  const userEmail = user.email.trim().toLowerCase();
+
+  // Explicit safeguard: test@gmail.com is strictly a customer account and NEVER has admin access
+  if (userEmail === 'test@gmail.com') {
+    return false;
+  }
+
   const adminEmails = getAdminEmails();
-  const emailMatch = adminEmails.includes(user.email.toLowerCase());
+  const emailMatch = adminEmails.includes(userEmail);
   const roleMatch = user.user_metadata?.role === 'admin' || user.app_metadata?.role === 'admin';
   return Boolean(emailMatch || roleMatch);
 };
@@ -57,7 +79,14 @@ export const saveRuntimeConfig = ({ supabaseUrl, supabaseAnonKey, razorpayKeyId,
   if (supabaseUrl !== undefined) localStorage.setItem('tbp_supabase_url', supabaseUrl.trim());
   if (supabaseAnonKey !== undefined) localStorage.setItem('tbp_supabase_key', supabaseAnonKey.trim());
   if (razorpayKeyId !== undefined) localStorage.setItem('tbp_razorpay_key', razorpayKeyId.trim());
-  if (adminEmails !== undefined) localStorage.setItem('tbp_admin_emails', adminEmails.trim());
+  if (adminEmails !== undefined) {
+    const filtered = adminEmails
+      .split(',')
+      .map((e) => e.trim().toLowerCase())
+      .filter((e) => Boolean(e) && e !== 'test@gmail.com')
+      .join(',');
+    localStorage.setItem('tbp_admin_emails', filtered);
+  }
 };
 
 const config = getConfig();
@@ -116,19 +145,22 @@ export const updateLocalOrder = (orderId, updates) => {
 // AUTHENTICATION (STRICTLY EMAIL & PASSWORD ONLY)
 // ==============================================================================
 export const signUpWithEmail = async (email, password) => {
+  const cleanEmail = email.trim().toLowerCase();
+
   if (isSupabaseConfigured() && supabase) {
     const { data, error } = await supabase.auth.signUp({
-      email,
+      email: cleanEmail,
       password
     });
     if (error) throw error;
     return data;
   } else {
+    const isUserAdmin = cleanEmail !== 'test@gmail.com' && getAdminEmails().includes(cleanEmail);
     const user = {
       id: 'usr-' + Math.random().toString(36).substring(2, 9),
-      email: email.trim().toLowerCase(),
+      email: cleanEmail,
       user_metadata: {
-        role: getAdminEmails().includes(email.trim().toLowerCase()) ? 'admin' : 'customer'
+        role: isUserAdmin ? 'admin' : 'customer'
       },
       created_at: new Date().toISOString()
     };
@@ -148,11 +180,12 @@ export const signInWithEmail = async (email, password) => {
     if (error) throw error;
     return data;
   } else {
+    const isUserAdmin = cleanEmail !== 'test@gmail.com' && getAdminEmails().includes(cleanEmail);
     const user = {
       id: 'usr-' + btoa(cleanEmail).substring(0, 8),
       email: cleanEmail,
       user_metadata: {
-        role: getAdminEmails().includes(cleanEmail) ? 'admin' : 'customer'
+        role: isUserAdmin ? 'admin' : 'customer'
       },
       created_at: new Date().toISOString()
     };
@@ -172,11 +205,22 @@ export const signOutUser = async () => {
 export const getActiveUser = async () => {
   if (isSupabaseConfigured() && supabase) {
     const { data: { user } } = await supabase.auth.getUser();
+    if (user && user.email?.toLowerCase() === 'test@gmail.com') {
+      if (user.user_metadata?.role === 'admin') {
+        user.user_metadata.role = 'customer';
+      }
+    }
     return user;
   }
   try {
     const raw = localStorage.getItem(STORAGE_USER_KEY);
-    return raw ? JSON.parse(raw) : null;
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (parsed && parsed.email?.toLowerCase() === 'test@gmail.com') {
+      parsed.user_metadata = { ...(parsed.user_metadata || {}), role: 'customer' };
+      localStorage.setItem(STORAGE_USER_KEY, JSON.stringify(parsed));
+    }
+    return parsed;
   } catch {
     return null;
   }
