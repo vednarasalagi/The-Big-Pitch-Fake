@@ -7,7 +7,6 @@ import {
   RefreshCcw, 
   Mail, 
   Phone, 
-  MapPin,
   Lock,
   Scale,
   AlertCircle
@@ -172,10 +171,10 @@ export default function LegalPages({ initialTab = 'privacy', onBackToStore }) {
                 In compliance with the <em>Information Technology Act, 2000</em> and rules framed thereunder, the details of our Grievance Redressal Officer are as follows:
               </p>
               <div style={{ background: '#121215', padding: '16px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)', marginTop: '8px' }}>
-                <div><strong>Grievance Officer:</strong> Legal & Compliance Desk</div>
+                <div><strong>Grievance Officer:</strong> Customer Support & Grievance Desk</div>
                 <div><strong>Company:</strong> THE BIG PITCH</div>
                 <div><strong>Email:</strong> <a href="mailto:grievance@thebigpitch.com" style={{ color: '#ffffff', textDecoration: 'underline' }}>grievance@thebigpitch.com</a></div>
-                <div><strong>Registered Office:</strong> BKC Logistics Annex, Bandra Kurla Complex, Mumbai, Maharashtra 400051, India</div>
+                <div><strong>Phone:</strong> +91 7760677104</div>
                 <div><strong>Turnaround Time:</strong> Grievances will be redressed within 15 business days of receipt.</div>
               </div>
             </section>
@@ -456,37 +455,32 @@ export default function LegalPages({ initialTab = 'privacy', onBackToStore }) {
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
             <Mail size={18} color="#ffffff" />
             <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--text-dim)', letterSpacing: '0.06em', fontWeight: 600 }}>
-              Official Customer Care & Headquarters
+              Official Customer Care & Helpline Desk
             </span>
           </div>
 
-          <h1 style={{ fontSize: '2.2rem', marginBottom: '6px', color: '#ffffff' }}>Contact & Grievance Redressal</h1>
+          <h1 style={{ fontSize: '2.2rem', marginBottom: '6px', color: '#ffffff' }}>Contact Us</h1>
           <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '32px' }}>
             Our dedicated executive desk is available to assist you with order status, logistics tracking, invoice copies, and warranty replacements.
           </p>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '16px', marginBottom: '36px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px', marginBottom: '36px' }}>
             <div style={{ background: '#121215', padding: '24px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
               <Mail size={22} color="#ffffff" style={{ marginBottom: '10px' }} />
               <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)', textTransform: 'uppercase', fontWeight: 600 }}>Customer Support Email</div>
-              <div style={{ fontSize: '1rem', fontWeight: 700, color: '#ffffff', marginTop: '4px' }}>support@thebigpitch.com</div>
+              <div style={{ fontSize: '1.05rem', fontWeight: 700, color: '#ffffff', marginTop: '4px' }}>
+                <a href="mailto:support@thebigpitch.com" style={{ color: '#ffffff', textDecoration: 'none' }}>support@thebigpitch.com</a>
+              </div>
               <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '4px' }}>Average response time: within 4 business hours</div>
             </div>
 
             <div style={{ background: '#121215', padding: '24px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
               <Phone size={22} color="#ffffff" style={{ marginBottom: '10px' }} />
-              <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)', textTransform: 'uppercase', fontWeight: 600 }}>Helpline & WhatsApp Desk</div>
-              <div style={{ fontSize: '1rem', fontWeight: 700, color: '#ffffff', marginTop: '4px' }}>+91 98200 12345</div>
-              <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '4px' }}>Monday through Saturday, 9:30 AM to 6:30 PM IST</div>
-            </div>
-
-            <div style={{ background: '#121215', padding: '24px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
-              <MapPin size={22} color="#ffffff" style={{ marginBottom: '10px' }} />
-              <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)', textTransform: 'uppercase', fontWeight: 600 }}>Warehouse & Registered Office</div>
-              <div style={{ fontSize: '0.88rem', fontWeight: 600, color: '#ffffff', marginTop: '4px' }}>THE BIG PITCH Technologies Pvt. Ltd.</div>
-              <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '4px' }}>
-                Unit 402, Trade Centre, Bandra Kurla Complex (BKC), Bandra East, Mumbai, Maharashtra 400051, India
+              <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)', textTransform: 'uppercase', fontWeight: 600 }}>Phone / WhatsApp Support</div>
+              <div style={{ fontSize: '1.15rem', fontWeight: 700, color: '#ffffff', marginTop: '4px' }}>
+                <a href="tel:7760677104" style={{ color: '#ffffff', textDecoration: 'none' }}>7760677104</a>
               </div>
+              <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '4px' }}>Direct line: +91 7760677104 • Mon–Sat, 9:30 AM to 6:30 PM IST</div>
             </div>
           </div>
 
@@ -500,7 +494,7 @@ export default function LegalPages({ initialTab = 'privacy', onBackToStore }) {
               Statutory Grievance Redressal Mechanism
             </h3>
             <p style={{ fontSize: '0.86rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
-              In accordance with Consumer Protection (E-Commerce) Rules, 2020, every customer ticket is acknowledged with a unique tracking ticket within 48 hours and resolved within 15 business days. For escalated matters, write directly to <a href="mailto:grievance@thebigpitch.com" style={{ color: '#ffffff', textDecoration: 'underline' }}>grievance@thebigpitch.com</a> with your Order ID.
+              In accordance with Consumer Protection (E-Commerce) Rules, 2020, every customer ticket is acknowledged with a unique tracking ticket within 48 hours and resolved within 15 business days. For urgent escalation or assistance, call or WhatsApp <a href="tel:7760677104" style={{ color: '#ffffff', textDecoration: 'underline' }}>7760677104</a> or email <a href="mailto:grievance@thebigpitch.com" style={{ color: '#ffffff', textDecoration: 'underline' }}>grievance@thebigpitch.com</a> with your Order ID.
             </p>
           </div>
         </div>
