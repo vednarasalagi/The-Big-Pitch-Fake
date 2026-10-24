@@ -6,7 +6,7 @@ const getConfig = () => {
   const envUrl = import.meta.env.VITE_SUPABASE_URL || '';
   const envKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
   const envRzp = import.meta.env.VITE_RAZORPAY_KEY_ID || '';
-  const envAdminEmails = import.meta.env.VITE_ADMIN_EMAILS || 'admin@thebigpitch.com,admin@gmail.com';
+  const envAdminEmails = import.meta.env.VITE_ADMIN_EMAILS || 'info.sigtrek@gmail.com,admin@gmail.com';
 
   const localUrl = localStorage.getItem('tbp_supabase_url') || '';
   const localKey = localStorage.getItem('tbp_supabase_key') || '';

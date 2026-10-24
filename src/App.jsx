@@ -194,7 +194,7 @@ export default function App() {
 
       const orderPayload = {
         user_id: currentUser?.id || null,
-        user_email: currentUser?.email || 'customer@thebigpitch.com',
+        user_email: currentUser?.email || 'info.sigtrek@gmail.com',
         product_id: paymentDetails.product.id,
         product_title: paymentDetails.product.title,
         amount: paymentDetails.amount || paymentDetails.product.price,

@@ -682,7 +682,7 @@ export default function AdminPortal({
                 <input
                   type="text"
                   className="form-input"
-                  placeholder="admin@thebigpitch.com, yourname@company.com"
+                  placeholder="info.sigtrek@gmail.com, yourname@company.com"
                   value={configAdmins}
                   onChange={(e) => setConfigAdmins(e.target.value)}
                 />

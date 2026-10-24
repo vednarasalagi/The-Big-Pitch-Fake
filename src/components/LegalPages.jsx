@@ -173,7 +173,7 @@ export default function LegalPages({ initialTab = 'privacy', onBackToStore }) {
               <div style={{ background: '#121215', padding: '16px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)', marginTop: '8px' }}>
                 <div><strong>Grievance Officer:</strong> Customer Support & Grievance Desk</div>
                 <div><strong>Company:</strong> THE BIG PITCH</div>
-                <div><strong>Email:</strong> <a href="mailto:grievance@thebigpitch.com" style={{ color: '#ffffff', textDecoration: 'underline' }}>grievance@thebigpitch.com</a></div>
+                <div><strong>Email:</strong> <a href="mailto:info.sigtrek@gmail.com" style={{ color: '#ffffff', textDecoration: 'underline' }}>info.sigtrek@gmail.com</a></div>
                 <div><strong>Phone:</strong> +91 7760677104</div>
                 <div><strong>Turnaround Time:</strong> Grievances will be redressed within 15 business days of receipt.</div>
               </div>
@@ -360,7 +360,7 @@ export default function LegalPages({ initialTab = 'privacy', onBackToStore }) {
             <section>
               <h3 style={{ fontSize: '1.2rem', color: '#ffffff', marginBottom: '8px' }}>6. Tamper-Evident Packaging Verification</h3>
               <p>
-                All physical orders are shipped in security-sealed packaging. If you observe that the outer carton is crushed, opened, or resealed with secondary tape, <strong>please refuse delivery</strong> and notify our team immediately at <a href="mailto:support@thebigpitch.com" style={{ color: '#ffffff', textDecoration: 'underline' }}>support@thebigpitch.com</a>.
+                All physical orders are shipped in security-sealed packaging. If you observe that the outer carton is crushed, opened, or resealed with secondary tape, <strong>please refuse delivery</strong> and notify our team immediately at <a href="mailto:info.sigtrek@gmail.com" style={{ color: '#ffffff', textDecoration: 'underline' }}>info.sigtrek@gmail.com</a>.
               </p>
             </section>
           </div>
@@ -391,7 +391,7 @@ export default function LegalPages({ initialTab = 'privacy', onBackToStore }) {
                 You may request order cancellation free of penalty at any time <strong>prior to shipment dispatch</strong>. To cancel an order before dispatch:
               </p>
               <ul style={{ paddingLeft: '22px', marginTop: '8px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                <li>Email <a href="mailto:support@thebigpitch.com" style={{ color: '#ffffff', textDecoration: 'underline' }}>support@thebigpitch.com</a> with your Order ID or Razorpay Payment ID.</li>
+                <li>Email <a href="mailto:info.sigtrek@gmail.com" style={{ color: '#ffffff', textDecoration: 'underline' }}>info.sigtrek@gmail.com</a> with your Order ID or Razorpay Payment ID.</li>
                 <li>Upon verification that the package has not left our warehouse, an immediate 100% cancellation will be executed.</li>
                 <li>Your refund will be refunded directly back to your source payment method within 5-7 business days via Razorpay.</li>
               </ul>
@@ -415,7 +415,7 @@ export default function LegalPages({ initialTab = 'privacy', onBackToStore }) {
             <section>
               <h3 style={{ fontSize: '1.2rem', color: '#ffffff', marginBottom: '8px' }}>3. How to Request a Replacement</h3>
               <ol style={{ paddingLeft: '22px', marginTop: '8px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <li>Notify us within seven (7) days of delivery at <a href="mailto:support@thebigpitch.com" style={{ color: '#ffffff', textDecoration: 'underline' }}>support@thebigpitch.com</a>.</li>
+                <li>Notify us within seven (7) days of delivery at <a href="mailto:info.sigtrek@gmail.com" style={{ color: '#ffffff', textDecoration: 'underline' }}>info.sigtrek@gmail.com</a>.</li>
                 <li>Attach your Order ID and 2-3 clear photographs or a short video demonstrating the functional defect or physical damage.</li>
                 <li>Our technical team will review the claim within 24 hours and issue a reverse courier pickup authorization.</li>
                 <li>The defective unit must be returned in its original rigid packaging box including all charging cables, protective pouches, and accessories.</li>
@@ -469,7 +469,7 @@ export default function LegalPages({ initialTab = 'privacy', onBackToStore }) {
               <Mail size={22} color="#ffffff" style={{ marginBottom: '10px' }} />
               <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)', textTransform: 'uppercase', fontWeight: 600 }}>Customer Support Email</div>
               <div style={{ fontSize: '1.05rem', fontWeight: 700, color: '#ffffff', marginTop: '4px' }}>
-                <a href="mailto:support@thebigpitch.com" style={{ color: '#ffffff', textDecoration: 'none' }}>support@thebigpitch.com</a>
+                <a href="mailto:info.sigtrek@gmail.com" style={{ color: '#ffffff', textDecoration: 'none' }}>info.sigtrek@gmail.com</a>
               </div>
               <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '4px' }}>Average response time: within 4 business hours</div>
             </div>
@@ -494,7 +494,7 @@ export default function LegalPages({ initialTab = 'privacy', onBackToStore }) {
               Statutory Grievance Redressal Mechanism
             </h3>
             <p style={{ fontSize: '0.86rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
-              In accordance with Consumer Protection (E-Commerce) Rules, 2020, every customer ticket is acknowledged with a unique tracking ticket within 48 hours and resolved within 15 business days. For urgent escalation or assistance, call or WhatsApp <a href="tel:7760677104" style={{ color: '#ffffff', textDecoration: 'underline' }}>7760677104</a> or email <a href="mailto:grievance@thebigpitch.com" style={{ color: '#ffffff', textDecoration: 'underline' }}>grievance@thebigpitch.com</a> with your Order ID.
+              In accordance with Consumer Protection (E-Commerce) Rules, 2020, every customer ticket is acknowledged with a unique tracking ticket within 48 hours and resolved within 15 business days. For urgent escalation or assistance, call or WhatsApp <a href="tel:7760677104" style={{ color: '#ffffff', textDecoration: 'underline' }}>7760677104</a> or email <a href="mailto:info.sigtrek@gmail.com" style={{ color: '#ffffff', textDecoration: 'underline' }}>info.sigtrek@gmail.com</a> with your Order ID.
             </p>
           </div>
         </div>

@@ -17,7 +17,7 @@ A high-performance digital products marketplace built with React, Vite, Supabase
 VITE_SUPABASE_URL=https://your-project.supabase.co
 VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
 VITE_RAZORPAY_KEY_ID=your-razorpay-key-id
-VITE_ADMIN_EMAILS=admin@thebigpitch.com,your-email@domain.com
+VITE_ADMIN_EMAILS=info.sigtrek@gmail.com,your-email@domain.com
 ```
 
 ## Database Setup
