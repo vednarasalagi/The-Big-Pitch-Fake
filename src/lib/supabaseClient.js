@@ -6,7 +6,7 @@ const getConfig = () => {
   const envUrl = import.meta.env.VITE_SUPABASE_URL || '';
   const envKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
   const envRzp = import.meta.env.VITE_RAZORPAY_KEY_ID || '';
-  const envAdminEmails = import.meta.env.VITE_ADMIN_EMAILS || 'test@gmail.com,admin@thebigpitch.com,admin@gmail.com';
+  const envAdminEmails = import.meta.env.VITE_ADMIN_EMAILS || 'admin@thebigpitch.com,admin@gmail.com';
 
   const localUrl = localStorage.getItem('tbp_supabase_url') || '';
   const localKey = localStorage.getItem('tbp_supabase_key') || '';
@@ -17,10 +17,6 @@ const getConfig = () => {
     .split(',')
     .map((e) => e.trim().toLowerCase())
     .filter(Boolean);
-
-  if (!emailsList.includes('test@gmail.com')) {
-    emailsList.push('test@gmail.com');
-  }
 
   return {
     supabaseUrl: localUrl || envUrl,
@@ -143,23 +139,6 @@ export const signUpWithEmail = async (email, password) => {
 
 export const signInWithEmail = async (email, password) => {
   const cleanEmail = email.trim().toLowerCase();
-
-  // Test account credentials handler
-  if (cleanEmail === 'test@gmail.com' && password === 'test1234') {
-    const testAdminUser = {
-      id: 'usr-test-admin-001',
-      email: 'test@gmail.com',
-      user_metadata: {
-        role: 'admin'
-      },
-      app_metadata: {
-        role: 'admin'
-      },
-      created_at: new Date().toISOString()
-    };
-    localStorage.setItem(STORAGE_USER_KEY, JSON.stringify(testAdminUser));
-    return { user: testAdminUser, session: { user: testAdminUser } };
-  }
 
   if (isSupabaseConfigured() && supabase) {
     const { data, error } = await supabase.auth.signInWithPassword({

@@ -242,28 +242,6 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
                 </>
               )}
             </button>
-
-            {mode === 'signin' && (
-              <div style={{ marginTop: '14px', textAlign: 'center' }}>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setEmail('test@gmail.com');
-                    setPassword('test1234');
-                  }}
-                  style={{
-                    background: 'transparent',
-                    border: 'none',
-                    color: 'var(--text-dim)',
-                    fontSize: '0.75rem',
-                    cursor: 'pointer',
-                    textDecoration: 'underline'
-                  }}
-                >
-                  Quick Fill: test@gmail.com / test1234
-                </button>
-              </div>
-            )}
           </form>
         </div>
       </div>

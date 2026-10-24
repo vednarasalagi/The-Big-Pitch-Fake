@@ -7,7 +7,7 @@ import ShippingCheckoutModal from './components/ShippingCheckoutModal';
 import AuthModal from './components/AuthModal';
 import AdminPortal from './components/AdminPortal';
 import OrdersModal from './components/OrdersModal';
-import RazorpayModalFallback from './components/RazorpayModalFallback';
+import LegalPages from './components/LegalPages';
 import SuccessCelebrationModal from './components/SuccessCelebrationModal';
 import { CATEGORIES } from './data/defaultProducts';
 import { 
@@ -34,7 +34,8 @@ import {
 
 export default function App() {
   // Navigation & Core State
-  const [activeTab, setActiveTab] = useState('catalog'); // 'catalog' | 'admin'
+  const [activeTab, setActiveTab] = useState('catalog'); // 'catalog' | 'admin' | 'legal'
+  const [legalTab, setLegalTab] = useState('privacy'); // 'privacy' | 'terms' | 'shipping' | 'refunds' | 'contact'
   const [products, setProducts] = useState([]);
   const [orders, setOrders] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
@@ -50,7 +51,6 @@ export default function App() {
   const [shippingProduct, setShippingProduct] = useState(null);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [isOrdersOpen, setIsOrdersOpen] = useState(false);
-  const [isRazorpayFallbackOpen, setIsRazorpayFallbackOpen] = useState(false);
   const [pendingCheckoutData, setPendingCheckoutData] = useState(null);
   const [celebrationOrder, setCelebrationOrder] = useState(null);
 
@@ -62,7 +62,7 @@ export default function App() {
     setToasts((prev) => [...prev, { id, message, type }]);
     setTimeout(() => {
       setToasts((prev) => prev.filter((t) => t.id !== id));
-    }, 4000);
+    }, 4500);
   };
 
   const isAdmin = useMemo(() => {
@@ -88,7 +88,7 @@ export default function App() {
       }
     } catch (err) {
       console.error('Data loading error:', err);
-      addToast('Error loading database: ' + err.message, 'error');
+      addToast('Error loading records: ' + err.message, 'error');
     } finally {
       setLoading(false);
     }
@@ -144,24 +144,27 @@ export default function App() {
     if (!currentUser) {
       setShippingProduct(product);
       setIsAuthOpen(true);
-      addToast('Please sign in to save your order & delivery address', 'info');
+      addToast('Please sign in to continue with your delivery address', 'info');
       return;
     }
     setShippingProduct(product);
   };
 
-  // User submitted delivery address in ShippingCheckoutModal
-  const handleProceedToRazorpay = ({ product, shipping }) => {
+  // User submitted address -> Trigger Razorpay Gateway Portal
+  const handleProceedToRazorpay = async ({ product, shipping }) => {
     setShippingProduct(null);
     setPendingCheckoutData({ product, shipping });
 
-    const rzpResult = initiateRazorpayPayment({
+    addToast('Opening Razorpay Payment Portal...', 'info');
+
+    await initiateRazorpayPayment({
       product,
       user: {
         ...currentUser,
         email: currentUser?.email || '',
         name: shipping.name,
-        contact: shipping.phone
+        contact: shipping.phone,
+        address: `${shipping.address}, ${shipping.city}, ${shipping.state} - ${shipping.pincode}`
       },
       onSuccess: async (paymentDetails) => {
         await handlePaymentSuccess({
@@ -170,16 +173,12 @@ export default function App() {
         });
       },
       onError: (err) => {
-        setIsRazorpayFallbackOpen(true);
+        addToast(err.message || 'Payment was not completed', 'error');
       },
       onCancel: () => {
-        addToast('Payment checkout was closed', 'info');
+        addToast('Payment portal closed by user', 'info');
       }
     });
-
-    if (rzpResult.type === 'error') {
-      setIsRazorpayFallbackOpen(true);
-    }
   };
 
   const handlePaymentSuccess = async (paymentDetails) => {
@@ -227,7 +226,7 @@ export default function App() {
       addToast(`Payment verified! Order placed for ${paymentDetails.product.title}.`, 'success');
     } catch (err) {
       console.error('Order recording error:', err);
-      addToast('Order recorded locally: ' + err.message, 'error');
+      addToast('Order record error: ' + err.message, 'error');
     }
   };
 
@@ -235,11 +234,10 @@ export default function App() {
     setCurrentUser(user);
     addToast(`Signed in as ${user.email}`, 'success');
     if (shippingProduct) {
-      // Re-trigger shipping modal
       const prod = shippingProduct;
       setTimeout(() => {
         setShippingProduct(prod);
-      }, 400);
+      }, 350);
     }
   };
 
@@ -248,6 +246,12 @@ export default function App() {
     setCurrentUser(null);
     if (activeTab === 'admin') setActiveTab('catalog');
     addToast('Signed out', 'info');
+  };
+
+  const openLegalPolicy = (tabName) => {
+    setLegalTab(tabName);
+    setActiveTab('legal');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   // Product CRUD
@@ -383,7 +387,7 @@ export default function App() {
             )}
           </section>
         </main>
-      ) : (
+      ) : activeTab === 'admin' ? (
         /* Admin View */
         <AdminPortal
           products={products}
@@ -397,35 +401,87 @@ export default function App() {
           onNotify={addToast}
           onOpenAuth={() => setIsAuthOpen(true)}
         />
+      ) : (
+        /* Legal & Compliance Policies View */
+        <LegalPages
+          initialTab={legalTab}
+          onBackToStore={() => setActiveTab('catalog')}
+        />
       )}
 
       {/* Footer */}
       <footer style={{
         background: '#000000',
         borderTop: '1px solid var(--border-subtle)',
-        padding: '36px 0 28px',
+        padding: '40px 0 32px',
         color: 'var(--text-dim)',
         fontSize: '0.82rem'
       }}>
-        <div className="container" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: '20px', alignItems: 'center' }}>
-          <div>
-            <div style={{ fontWeight: 800, color: '#ffffff', fontSize: '1rem', letterSpacing: '-0.02em', marginBottom: '2px' }}>
-              THE BIG PITCH
+        <div className="container" style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: '20px', alignItems: 'center' }}>
+            <div>
+              <div style={{ fontWeight: 800, color: '#ffffff', fontSize: '1rem', letterSpacing: '-0.02em', marginBottom: '4px' }}>
+                THE BIG PITCH
+              </div>
+              <div>Physical equipment & executive gear for venture-backed founders.</div>
             </div>
-            <div>Physical equipment & executive gear for venture-backed founders.</div>
+
+            <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+              <span>Razorpay Verified Merchant • Express Pan-India Delivery</span>
+              {isAdmin && (
+                <button 
+                  className="btn btn-sm btn-outline" 
+                  onClick={() => setActiveTab('admin')}
+                  style={{ fontSize: '0.75rem', padding: '4px 10px' }}
+                >
+                  Admin Panel
+                </button>
+              )}
+            </div>
           </div>
 
-          <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-            <span>Razorpay Payments • Supabase Backend • Express Courier Delivery</span>
-            {isAdmin && (
-              <button 
-                className="btn btn-sm btn-outline" 
-                onClick={() => setActiveTab('admin')}
-                style={{ fontSize: '0.75rem', padding: '4px 10px' }}
-              >
-                Admin Panel
-              </button>
-            )}
+          {/* Compliance & Policy Links */}
+          <div style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '18px',
+            alignItems: 'center',
+            borderTop: '1px solid var(--border-subtle)',
+            paddingTop: '20px'
+          }}>
+            <button 
+              onClick={() => openLegalPolicy('privacy')}
+              style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '0.78rem' }}
+            >
+              Privacy Policy
+            </button>
+            <button 
+              onClick={() => openLegalPolicy('terms')}
+              style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '0.78rem' }}
+            >
+              Terms & Conditions
+            </button>
+            <button 
+              onClick={() => openLegalPolicy('shipping')}
+              style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '0.78rem' }}
+            >
+              Shipping & Delivery Policy
+            </button>
+            <button 
+              onClick={() => openLegalPolicy('refunds')}
+              style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '0.78rem' }}
+            >
+              Cancellation & Refund Policy
+            </button>
+            <button 
+              onClick={() => openLegalPolicy('contact')}
+              style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '0.78rem' }}
+            >
+              Contact Us
+            </button>
+            <span style={{ marginLeft: 'auto', color: 'var(--text-dim)', fontSize: '0.75rem' }}>
+              © {new Date().getFullYear()} THE BIG PITCH. All rights reserved.
+            </span>
           </div>
         </div>
       </footer>
@@ -469,21 +525,7 @@ export default function App() {
         }}
       />
 
-      {/* 5. Razorpay Fallback Modal */}
-      <RazorpayModalFallback
-        isOpen={isRazorpayFallbackOpen}
-        product={pendingCheckoutData?.product}
-        user={currentUser}
-        onClose={() => setIsRazorpayFallbackOpen(false)}
-        onSuccess={(paymentDetails) => {
-          handlePaymentSuccess({
-            ...paymentDetails,
-            shipping: pendingCheckoutData?.shipping
-          });
-        }}
-      />
-
-      {/* 6. Success Celebration Modal */}
+      {/* 5. Success Celebration Modal */}
       <SuccessCelebrationModal
         order={celebrationOrder}
         isOpen={Boolean(celebrationOrder)}
