@@ -9,25 +9,26 @@ import {
   Phone, 
   MapPin,
   Lock,
-  CheckCircle2
+  Scale,
+  AlertCircle
 } from 'lucide-react';
 
 export default function LegalPages({ initialTab = 'privacy', onBackToStore }) {
-  const [currentPolicy, setCurrentPolicy] = useState(initialTab); // 'privacy' | 'terms' | 'shipping' | 'refunds' | 'contact'
+  const [currentPolicy, setCurrentPolicy] = useState(initialTab);
 
   return (
-    <div className="container" style={{ padding: '40px 24px 80px', maxWidth: '860px' }}>
-      {/* Back button */}
+    <div className="container" style={{ padding: '40px 24px 80px', maxWidth: '920px' }}>
+      {/* Navigation Return */}
       <button 
         className="btn btn-secondary btn-sm"
         onClick={onBackToStore}
         style={{ marginBottom: '24px' }}
       >
         <ArrowLeft size={14} />
-        Back to Products
+        Back to Products Catalog
       </button>
 
-      {/* Policy Switcher Bar */}
+      {/* Policy Navigation Bar */}
       <div style={{
         display: 'flex',
         alignItems: 'center',
@@ -60,278 +61,447 @@ export default function LegalPages({ initialTab = 'privacy', onBackToStore }) {
           className={`filter-pill ${currentPolicy === 'refunds' ? 'active' : ''}`}
           onClick={() => setCurrentPolicy('refunds')}
         >
-          Cancellation & Refunds
+          Cancellation & Refund Policy
         </button>
         <button
           className={`filter-pill ${currentPolicy === 'contact' ? 'active' : ''}`}
           onClick={() => setCurrentPolicy('contact')}
         >
-          Contact Us
+          Contact & Grievance Redressal
         </button>
       </div>
 
-      {/* 1. PRIVACY POLICY */}
+      {/* =========================================================================
+          1. DETAILED PRIVACY POLICY
+         ========================================================================= */}
       {currentPolicy === 'privacy' && (
-        <div className="glass-card" style={{ padding: '36px 32px' }}>
+        <div className="glass-card" style={{ padding: '40px 36px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
             <Lock size={18} color="#ffffff" />
             <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--text-dim)', letterSpacing: '0.06em', fontWeight: 600 }}>
-              Legal Compliance
+              Information Technology Act, 2000 & IT Rules 2011 Compliant
             </span>
           </div>
 
-          <h1 style={{ fontSize: '2rem', marginBottom: '8px', color: '#ffffff' }}>Privacy Policy</h1>
-          <div style={{ fontSize: '0.82rem', color: 'var(--text-dim)', marginBottom: '24px' }}>
-            Last Updated: October 2026 • THE BIG PITCH (Physical Equipment & Founder Goods)
+          <h1 style={{ fontSize: '2.2rem', marginBottom: '6px', color: '#ffffff' }}>Privacy Policy</h1>
+          <div style={{ fontSize: '0.8rem', color: 'var(--text-dim)', marginBottom: '28px' }}>
+            Effective Date: October 24, 2026 • THE BIG PITCH (Physical Founder Hardware & Goods)
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.65 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.7 }}>
             <section>
-              <h3 style={{ fontSize: '1.15rem', color: '#ffffff', marginBottom: '8px' }}>1. Information We Collect</h3>
+              <h3 style={{ fontSize: '1.2rem', color: '#ffffff', marginBottom: '8px' }}>1. Introduction & Overview</h3>
               <p>
-                When you visit <strong>THE BIG PITCH</strong> or place an order for physical goods, we collect personal information necessary to fulfill your orders, provide customer support, and comply with applicable laws. This includes:
+                Welcome to <strong>THE BIG PITCH</strong> ("we", "us", "our", or the "Company"). We operate an e-commerce platform offering premium physical hardware, executive stationery, and founder merchandise delivered across India. We respect your privacy and are committed to protecting your personal data in accordance with the <em>Information Technology Act, 2000</em>, the <em>Information Technology (Reasonable Security Practices and Procedures and Sensitive Personal Data or Information) Rules, 2011</em>, and the <em>Digital Personal Data Protection Act, 2023</em>.
               </p>
-              <ul style={{ paddingLeft: '20px', marginTop: '8px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                <li><strong>Identity & Contact Information:</strong> Full name, email address, and mobile phone number for courier delivery notifications and OTP verification.</li>
-                <li><strong>Shipping & Delivery Address:</strong> Street address, landmark, city, state, postal PIN code, and country for physical courier dispatch.</li>
-                <li><strong>Transaction & Payment Information:</strong> Payment transactions are securely handled directly through <strong>Razorpay Payment Gateway</strong> (Razorpay Software Private Limited). We do not store or process your credit/debit card numbers, CVVs, or UPI MPINs on our servers.</li>
+              <p style={{ marginTop: '8px' }}>
+                This Privacy Policy explains how we collect, process, store, disclose, and safeguard your personal information when you visit our website, register an account, or purchase physical items.
+              </p>
+            </section>
+
+            <section>
+              <h3 style={{ fontSize: '1.2rem', color: '#ffffff', marginBottom: '8px' }}>2. Categories of Information We Collect</h3>
+              <p>To process your physical orders and communicate shipping progress, we collect the following categories of data:</p>
+              <ul style={{ paddingLeft: '22px', marginTop: '10px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <li>
+                  <strong>Account Identification:</strong> Email address and encrypted password credentials managed securely via Supabase Auth.
+                </li>
+                <li>
+                  <strong>Physical Delivery & Courier Coordinates:</strong> Recipient full name, verified 10-digit mobile contact number, detailed delivery address (building/flat name, street, landmarks, city, state, and 6-digit postal PIN code).
+                </li>
+                <li>
+                  <strong>Transaction & Payment Identifiers:</strong> Razorpay payment identifiers (such as <code>razorpay_payment_id</code>, <code>razorpay_order_id</code>, and payment timestamp). <em>Note: All electronic payment processing is handled exclusively through Razorpay Software Private Limited. We never store, receive, or process your credit/debit card numbers, CVVs, net-banking passwords, or UPI PINs.</em>
+                </li>
+                <li>
+                  <strong>Technical & Operational Logs:</strong> Browser user agent, device operating system, access timestamps, and IP addresses recorded for fraud prevention and error diagnosis.
+                </li>
               </ul>
             </section>
 
             <section>
-              <h3 style={{ fontSize: '1.15rem', color: '#ffffff', marginBottom: '8px' }}>2. How We Use Your Information</h3>
-              <p>We use your information exclusively for:</p>
-              <ul style={{ paddingLeft: '20px', marginTop: '8px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                <li>Processing physical product orders and packing shipments.</li>
-                <li>Sharing your delivery name, address, and phone number with verified logistics partners (such as Blue Dart, Delhivery, DTDC, FedEx) solely for delivery.</li>
-                <li>Communicating real-time tracking numbers and shipment status updates via SMS and email.</li>
-                <li>Providing warranty service, replacements, and customer support.</li>
+              <h3 style={{ fontSize: '1.2rem', color: '#ffffff', marginBottom: '8px' }}>3. Lawful Basis & Purpose of Processing</h3>
+              <p>We process your personal information strictly for legitimate commercial and operational purposes, including:</p>
+              <ul style={{ paddingLeft: '22px', marginTop: '8px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                <li>Fulfilling, inspecting, packing, and dispatching physical orders to your shipping address.</li>
+                <li>Transmitting automated dispatch confirmations, tracking links (AWB numbers), and delivery status notifications via SMS and email.</li>
+                <li>Handling 1-year hardware replacement warranty claims, customer support tickets, and courier tracking inquiries.</li>
+                <li>Detecting and mitigating payment fraud, chargebacks, and unauthorized account access.</li>
+                <li>Complying with statutory tax, invoicing, and corporate compliance obligations under Indian law.</li>
               </ul>
             </section>
 
             <section>
-              <h3 style={{ fontSize: '1.15rem', color: '#ffffff', marginBottom: '8px' }}>3. Data Security & Storage</h3>
+              <h3 style={{ fontSize: '1.2rem', color: '#ffffff', marginBottom: '8px' }}>4. Data Disclosure to Third Parties</h3>
+              <p>We do not sell, rent, monetize, or trade your personal information. We disclose data solely to essential service providers as detailed below:</p>
+              <ul style={{ paddingLeft: '22px', marginTop: '8px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                <li>
+                  <strong>Third-Party Logistics Partners:</strong> We share your recipient name, delivery address, and contact phone number with contracted courier partners (e.g., Blue Dart Express, Delhivery, DTDC, FedEx India, Speed Post) strictly to achieve door-to-door delivery and delivery verification.
+                </li>
+                <li>
+                  <strong>Payment Aggregator:</strong> Transaction metadata is transmitted to <strong>Razorpay</strong> over encrypted 256-bit TLS connections adhering to PCI-DSS Level 1 specifications.
+                </li>
+                <li>
+                  <strong>Legal & Regulatory Authorities:</strong> We may disclose information if required to do so by applicable Indian court orders, subpoenas, or statutory law enforcement inquiries.
+                </li>
+              </ul>
+            </section>
+
+            <section>
+              <h3 style={{ fontSize: '1.2rem', color: '#ffffff', marginBottom: '8px' }}>5. Security Safeguards & Data Retention</h3>
               <p>
-                Your account data and order history are protected using 256-bit SSL/TLS encryption and stored on Supabase infrastructure with Row Level Security (RLS) policies. Only authorized administrators have access to customer delivery information. We do not sell, rent, or trade your personal information to third-party marketing companies.
+                We implement industry-standard technical, managerial, and physical security measures. All communications between your browser, our application, and Supabase servers are encrypted via HTTPS with TLS 1.3. User account data is segregated through PostgreSQL Row Level Security (RLS) policies.
+              </p>
+              <p style={{ marginTop: '8px' }}>
+                We retain personal delivery and invoice data for as long as required to honor warranty commitments, settle disputes, and satisfy commercial tax accounting rules (typically 7 years as mandated under Indian tax regulations).
               </p>
             </section>
 
             <section>
-              <h3 style={{ fontSize: '1.15rem', color: '#ffffff', marginBottom: '8px' }}>4. Cookies & Analytics</h3>
-              <p>
-                We use strictly functional cookies and local storage tokens to preserve your login session, shopping preferences, and authentication state.
-              </p>
+              <h3 style={{ fontSize: '1.2rem', color: '#ffffff', marginBottom: '8px' }}>6. Your Statutory Rights</h3>
+              <p>Under applicable Indian data protection laws, you retain the right to:</p>
+              <ul style={{ paddingLeft: '22px', marginTop: '8px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                <li>Review, inspect, or correct your delivery address and profile information.</li>
+                <li>Request account deletion or data erasure, subject to mandatory record retention laws for completed tax transactions.</li>
+                <li>Withdraw consent for optional non-transactional marketing communications.</li>
+              </ul>
             </section>
 
             <section>
-              <h3 style={{ fontSize: '1.15rem', color: '#ffffff', marginBottom: '8px' }}>5. Contact Our Privacy Officer</h3>
+              <h3 style={{ fontSize: '1.2rem', color: '#ffffff', marginBottom: '8px' }}>7. Grievance Officer Details</h3>
               <p>
-                If you have questions about your personal data or wish to request data deletion, contact us at <a href="mailto:privacy@thebigpitch.com" style={{ color: '#ffffff', textDecoration: 'underline' }}>privacy@thebigpitch.com</a>.
+                In compliance with the <em>Information Technology Act, 2000</em> and rules framed thereunder, the details of our Grievance Redressal Officer are as follows:
               </p>
+              <div style={{ background: '#121215', padding: '16px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)', marginTop: '8px' }}>
+                <div><strong>Grievance Officer:</strong> Legal & Compliance Desk</div>
+                <div><strong>Company:</strong> THE BIG PITCH</div>
+                <div><strong>Email:</strong> <a href="mailto:grievance@thebigpitch.com" style={{ color: '#ffffff', textDecoration: 'underline' }}>grievance@thebigpitch.com</a></div>
+                <div><strong>Registered Office:</strong> BKC Logistics Annex, Bandra Kurla Complex, Mumbai, Maharashtra 400051, India</div>
+                <div><strong>Turnaround Time:</strong> Grievances will be redressed within 15 business days of receipt.</div>
+              </div>
             </section>
           </div>
         </div>
       )}
 
-      {/* 2. TERMS & CONDITIONS */}
+      {/* =========================================================================
+          2. DETAILED TERMS & CONDITIONS
+         ========================================================================= */}
       {currentPolicy === 'terms' && (
-        <div className="glass-card" style={{ padding: '36px 32px' }}>
+        <div className="glass-card" style={{ padding: '40px 36px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-            <FileText size={18} color="#ffffff" />
+            <Scale size={18} color="#ffffff" />
             <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--text-dim)', letterSpacing: '0.06em', fontWeight: 600 }}>
-              User Agreement
+              Legally Binding Agreement
             </span>
           </div>
 
-          <h1 style={{ fontSize: '2rem', marginBottom: '8px', color: '#ffffff' }}>Terms & Conditions</h1>
-          <div style={{ fontSize: '0.82rem', color: 'var(--text-dim)', marginBottom: '24px' }}>
-            Last Updated: October 2026 • Governing Law: Jurisdiction of India
+          <h1 style={{ fontSize: '2.2rem', marginBottom: '6px', color: '#ffffff' }}>Terms & Conditions</h1>
+          <div style={{ fontSize: '0.8rem', color: 'var(--text-dim)', marginBottom: '28px' }}>
+            Effective Date: October 24, 2026 • Governing Law: Jurisdiction of Mumbai, India
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.65 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.7 }}>
             <section>
-              <h3 style={{ fontSize: '1.15rem', color: '#ffffff', marginBottom: '8px' }}>1. Acceptance of Terms</h3>
+              <h3 style={{ fontSize: '1.2rem', color: '#ffffff', marginBottom: '8px' }}>1. Contractual Relationship</h3>
               <p>
-                By accessing, browsing, or purchasing physical equipment from <strong>THE BIG PITCH</strong>, you agree to be bound by these Terms and Conditions and all applicable laws and regulations in India. If you do not agree with any of these terms, you are prohibited from using or purchasing through this website.
+                These Terms & Conditions ("Terms") govern your access to and use of <strong>THE BIG PITCH</strong> e-commerce store and the purchase of physical goods, hardware, stationery, and apparel. By accessing the site, creating an account, or placing an order, you agree to be bound by these Terms and our Privacy Policy. If you do not agree, you must cease using the platform.
               </p>
             </section>
 
             <section>
-              <h3 style={{ fontSize: '1.15rem', color: '#ffffff', marginBottom: '8px' }}>2. Product Information & Pricing</h3>
+              <h3 style={{ fontSize: '1.2rem', color: '#ffffff', marginBottom: '8px' }}>2. User Eligibility & Account Responsibilities</h3>
               <p>
-                All prices displayed on THE BIG PITCH are denominated in Indian Rupees (₹ INR) inclusive of applicable taxes unless specified otherwise. We reserve the right to revise product specifications, inventory counts, and prices at any time without prior notice. In the event of a technical typographical error resulting in an incorrect price, we reserve the right to cancel the order and provide a full refund.
+                You must be at least 18 years of age and competent to enter into a legally binding contract under the <em>Indian Contract Act, 1872</em>. If you are registering on behalf of a company or legal entity, you represent and warrant that you hold full authorization to bind said entity to these Terms.
+              </p>
+              <p style={{ marginTop: '8px' }}>
+                You are responsible for maintaining the confidentiality of your account credentials and password. Any actions executed through your account are deemed authorized by you.
               </p>
             </section>
 
             <section>
-              <h3 style={{ fontSize: '1.15rem', color: '#ffffff', marginBottom: '8px' }}>3. Orders & Payment Processing</h3>
+              <h3 style={{ fontSize: '1.2rem', color: '#ffffff', marginBottom: '8px' }}>3. Products, Specifications & Inventory</h3>
               <p>
-                Payments on THE BIG PITCH are processed through the authorized Razorpay Payment Gateway. By submitting your payment, you represent and warrant that you are authorized to use the chosen payment method (UPI, Debit/Credit Card, NetBanking). Orders are confirmed upon receipt of successful payment verification from Razorpay.
+                All products offered on THE BIG PITCH represent physical goods manufactured with specified materials (e.g., anodized aluminum, vegetable-tanned leather, French Terry cotton). We endeavor to present product colors, dimensions, and weights with the utmost precision. However, natural variances in grain, anodization batches, or display calibration may result in minor superficial differences.
+              </p>
+              <p style={{ marginTop: '8px' }}>
+                All orders are subject to warehouse inventory availability. If an ordered item is discovered to be out of stock post-order, we will immediately inform you and issue a 100% full refund through Razorpay.
               </p>
             </section>
 
             <section>
-              <h3 style={{ fontSize: '1.15rem', color: '#ffffff', marginBottom: '8px' }}>4. Physical Delivery & Title</h3>
+              <h3 style={{ fontSize: '1.2rem', color: '#ffffff', marginBottom: '8px' }}>4. Pricing, Currency & Payments</h3>
               <p>
-                Risk of loss and title for all physical products purchased from THE BIG PITCH pass to you upon delivery of the items to our third-party carrier. We provide tracking identifiers for all packages to ensure transparency throughout the delivery cycle.
+                Prices are stated in <strong>Indian Rupees (₹ INR)</strong>. Prices include standard express delivery charges within India. We reserve the right to modify catalog pricing at any time prior to order placement.
+              </p>
+              <p style={{ marginTop: '8px' }}>
+                Payments must be settled in full prior to dispatch. Payments are processed through the authorized Razorpay checkout gateway supporting UPI, Debit Cards, Credit Cards, and NetBanking. By completing a transaction, you confirm that you are the lawful holder of the payment instrument utilized.
               </p>
             </section>
 
             <section>
-              <h3 style={{ fontSize: '1.15rem', color: '#ffffff', marginBottom: '8px' }}>5. Manufacturer Warranty</h3>
+              <h3 style={{ fontSize: '1.2rem', color: '#ffffff', marginBottom: '8px' }}>5. Shipping & Title</h3>
               <p>
-                All hardware products (including presenter clickers, microphones, and laptop stands) carry a 1-year limited warranty against manufacturing and electrical defects from the date of delivery. Warranty does not cover accidental damage, physical misuse, water damage, or unauthorized modifications.
+                Physical goods are shipped via express third-party couriers to the address provided during checkout. The risk of loss and title for all ordered items passes to you upon delivery by the carrier at the destination address.
               </p>
             </section>
 
             <section>
-              <h3 style={{ fontSize: '1.15rem', color: '#ffffff', marginBottom: '8px' }}>6. Limitation of Liability</h3>
+              <h3 style={{ fontSize: '1.2rem', color: '#ffffff', marginBottom: '8px' }}>6. 1-Year Limited Hardware Warranty</h3>
               <p>
-                In no event shall THE BIG PITCH, its directors, employees, or partners be liable for any indirect, punitive, incidental, or consequential damages resulting from the use or inability to use the products purchased.
+                Hardware items (such as the Executive Wireless Pitch Presenter clicker, Condenser Microphone, and Laptop Stand) include a <strong>1-Year Limited Replacement Warranty</strong> covering internal electronic or mechanical manufacturing defects.
+              </p>
+              <p style={{ marginTop: '8px' }}>
+                <em>Warranty Exclusions:</em> The warranty explicitly excludes damages resulting from accidents, drops, liquid immersion, unauthorized repairs, normal aesthetic wear-and-tear, or unauthorized tampering.
+              </p>
+            </section>
+
+            <section>
+              <h3 style={{ fontSize: '1.2rem', color: '#ffffff', marginBottom: '8px' }}>7. Intellectual Property</h3>
+              <p>
+                All brand marks, logos, typography, visual layouts, photography, and product designs on THE BIG PITCH are the exclusive intellectual property of THE BIG PITCH and are protected under Indian copyright, trademark, and design statutes. You may not copy, reverse-engineer, or commercially exploit any content without express written consent.
+              </p>
+            </section>
+
+            <section>
+              <h3 style={{ fontSize: '1.2rem', color: '#ffffff', marginBottom: '8px' }}>8. Limitation of Liability & Force Majeure</h3>
+              <p>
+                To the fullest extent permissible by law, THE BIG PITCH's maximum aggregate liability arising out of or related to any order shall not exceed the total amount paid by the customer for the specific product in dispute.
+              </p>
+              <p style={{ marginTop: '8px' }}>
+                We shall not be liable for delivery delays or failure in performance arising from events beyond our reasonable control, including acts of God, strikes, natural disasters, courier road blockages, or government restrictions.
+              </p>
+            </section>
+
+            <section>
+              <h3 style={{ fontSize: '1.2rem', color: '#ffffff', marginBottom: '8px' }}>9. Governing Law & Dispute Resolution</h3>
+              <p>
+                These Terms shall be interpreted and governed in accordance with the substantive laws of India. Any legal dispute, arbitration, or proceeding arising hereunder shall be subject to the exclusive jurisdiction of the competent courts situated in <strong>Mumbai, Maharashtra, India</strong>.
               </p>
             </section>
           </div>
         </div>
       )}
 
-      {/* 3. SHIPPING & DELIVERY POLICY */}
+      {/* =========================================================================
+          3. DETAILED SHIPPING & DELIVERY POLICY
+         ========================================================================= */}
       {currentPolicy === 'shipping' && (
-        <div className="glass-card" style={{ padding: '36px 32px' }}>
+        <div className="glass-card" style={{ padding: '40px 36px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
             <Truck size={18} color="#ffffff" />
             <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--text-dim)', letterSpacing: '0.06em', fontWeight: 600 }}>
-              Logistics & Fulfillment
+              Courier Logistics & Timeline Guarantees
             </span>
           </div>
 
-          <h1 style={{ fontSize: '2rem', marginBottom: '8px', color: '#ffffff' }}>Shipping & Delivery Policy</h1>
-          <div style={{ fontSize: '0.82rem', color: 'var(--text-dim)', marginBottom: '24px' }}>
-            Last Updated: October 2026 • Pan-India Courier Dispatches
+          <h1 style={{ fontSize: '2.2rem', marginBottom: '6px', color: '#ffffff' }}>Shipping & Delivery Policy</h1>
+          <div style={{ fontSize: '0.8rem', color: 'var(--text-dim)', marginBottom: '28px' }}>
+            Pan-India Express Air Shipping • Real-Time AWB Tracking
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.65 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.7 }}>
             <section>
-              <h3 style={{ fontSize: '1.15rem', color: '#ffffff', marginBottom: '8px' }}>1. Order Processing Time</h3>
+              <h3 style={{ fontSize: '1.2rem', color: '#ffffff', marginBottom: '8px' }}>1. Pan-India Delivery Coverage</h3>
               <p>
-                All in-stock orders are processed, quality-inspected, and packed within <strong>24 to 48 business hours</strong> of payment confirmation via Razorpay. Orders placed on Sundays or national holidays are dispatched on the next business day.
+                THE BIG PITCH ships physical hardware, stationery, and apparel across India, servicing over <strong>19,000+ postal PIN codes</strong> in partnership with premier tier-1 air logistics providers including Blue Dart Express, Delhivery, DTDC, and FedEx India.
               </p>
             </section>
 
             <section>
-              <h3 style={{ fontSize: '1.15rem', color: '#ffffff', marginBottom: '8px' }}>2. Delivery Timelines</h3>
-              <p>We deliver across 19,000+ PIN codes in India. Estimated delivery times are as follows:</p>
-              <ul style={{ paddingLeft: '20px', marginTop: '8px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                <li><strong>Metro Cities (Mumbai, Delhi NCR, Bengaluru, Hyderabad, Chennai, Kolkata, Pune):</strong> 2 to 3 business days.</li>
-                <li><strong>Tier-2 & Tier-3 Cities:</strong> 3 to 5 business days.</li>
-                <li><strong>Remote or Special Service Areas:</strong> 5 to 7 business days.</li>
+              <h3 style={{ fontSize: '1.2rem', color: '#ffffff', marginBottom: '8px' }}>2. Dispatch Timeframes</h3>
+              <p>
+                Every order undergoes hardware diagnostics and packaging inspection before departure:
+              </p>
+              <ul style={{ paddingLeft: '22px', marginTop: '8px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                <li><strong>Warehouse Fulfillment:</strong> Orders placed on business days before 2:00 PM IST are processed and packed on the same day. All other orders are dispatched within 24 to 48 business hours.</li>
+                <li><strong>Weekends & Public Holidays:</strong> Orders confirmed on Sundays or national holidays are dispatched on the immediate following business day.</li>
               </ul>
             </section>
 
             <section>
-              <h3 style={{ fontSize: '1.15rem', color: '#ffffff', marginBottom: '8px' }}>3. Shipping Charges</h3>
+              <h3 style={{ fontSize: '1.2rem', color: '#ffffff', marginBottom: '8px' }}>3. Estimated Transit Schedules</h3>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '12px', margin: '14px 0' }}>
+                <div style={{ background: '#121215', padding: '16px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
+                  <div style={{ fontWeight: 600, color: '#ffffff', marginBottom: '4px' }}>Metro Hubs</div>
+                  <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#ffffff' }}>2 - 3 Days</div>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)', marginTop: '4px' }}>Mumbai, Bengaluru, Delhi NCR, Hyderabad, Chennai, Pune</div>
+                </div>
+
+                <div style={{ background: '#121215', padding: '16px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
+                  <div style={{ fontWeight: 600, color: '#ffffff', marginBottom: '4px' }}>Tier-2 & Tier-3 Cities</div>
+                  <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#ffffff' }}>3 - 5 Days</div>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)', marginTop: '4px' }}>State capitals and regional urban centers</div>
+                </div>
+
+                <div style={{ background: '#121215', padding: '16px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
+                  <div style={{ fontWeight: 600, color: '#ffffff', marginBottom: '4px' }}>Special & Remote Regions</div>
+                  <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#ffffff' }}>5 - 7 Days</div>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)', marginTop: '4px' }}>Northeast, J&K, Andaman & Nicobar islands</div>
+                </div>
+              </div>
+            </section>
+
+            <section>
+              <h3 style={{ fontSize: '1.2rem', color: '#ffffff', marginBottom: '8px' }}>4. Free Express Shipping</h3>
               <p>
-                We provide <strong>FREE standard express courier delivery</strong> on all orders across India. There are no hidden packaging, handling, or surcharge fees added at checkout.
+                We provide <strong>100% Free Shipping</strong> on all physical items. There are zero handling charges, fuel surcharges, or hidden delivery costs added at checkout.
               </p>
             </section>
 
             <section>
-              <h3 style={{ fontSize: '1.15rem', color: '#ffffff', marginBottom: '8px' }}>4. Courier Partners & Tracking</h3>
+              <h3 style={{ fontSize: '1.2rem', color: '#ffffff', marginBottom: '8px' }}>5. Live Tracking & Delivery Protocol</h3>
               <p>
-                Shipments are sent via reputable air couriers including Blue Dart, Delhivery, DTDC, and FedEx India. Once your package is dispatched, you will receive an automated tracking code (AWB) viewable on your <strong>My Orders</strong> page.
+                Upon package pickup by the carrier, an Air Waybill (AWB) tracking number is generated. You can inspect real-time courier checkpoints anytime from your <strong>My Orders</strong> portal.
+              </p>
+              <p style={{ marginTop: '8px' }}>
+                Couriers will make up to three (3) delivery attempts. An SMS and phone call will be made prior to final delivery. If all attempts fail due to non-availability or an incorrect address, the parcel will return to our warehouse, and reshipment fees may apply.
               </p>
             </section>
 
             <section>
-              <h3 style={{ fontSize: '1.15rem', color: '#ffffff', marginBottom: '8px' }}>5. Tamper-Proof Packaging</h3>
+              <h3 style={{ fontSize: '1.2rem', color: '#ffffff', marginBottom: '8px' }}>6. Tamper-Evident Packaging Verification</h3>
               <p>
-                All orders are packaged in custom heavy-duty matte black rigid boxes with tamper-evident security tape. If the outer carton arrives damaged or tampered with, please do not accept delivery and contact our support immediately.
+                All physical orders are shipped in security-sealed packaging. If you observe that the outer carton is crushed, opened, or resealed with secondary tape, <strong>please refuse delivery</strong> and notify our team immediately at <a href="mailto:support@thebigpitch.com" style={{ color: '#ffffff', textDecoration: 'underline' }}>support@thebigpitch.com</a>.
               </p>
             </section>
           </div>
         </div>
       )}
 
-      {/* 4. CANCELLATION & REFUNDS */}
+      {/* =========================================================================
+          4. DETAILED CANCELLATION & REFUND POLICY
+         ========================================================================= */}
       {currentPolicy === 'refunds' && (
-        <div className="glass-card" style={{ padding: '36px 32px' }}>
+        <div className="glass-card" style={{ padding: '40px 36px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
             <RefreshCcw size={18} color="#ffffff" />
             <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--text-dim)', letterSpacing: '0.06em', fontWeight: 600 }}>
-              Returns & Claims
+              Consumer Protection (E-Commerce) Rules, 2020 Compliant
             </span>
           </div>
 
-          <h1 style={{ fontSize: '2rem', marginBottom: '8px', color: '#ffffff' }}>Cancellation & Refund Policy</h1>
-          <div style={{ fontSize: '0.82rem', color: 'var(--text-dim)', marginBottom: '24px' }}>
-            Last Updated: October 2026 • 7-Day Replacement Guarantee
+          <h1 style={{ fontSize: '2.2rem', marginBottom: '6px', color: '#ffffff' }}>Cancellation & Refund Policy</h1>
+          <div style={{ fontSize: '0.8rem', color: 'var(--text-dim)', marginBottom: '28px' }}>
+            7-Day Replacement Guarantee • Direct Razorpay Gateway Reversals
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.65 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.7 }}>
             <section>
-              <h3 style={{ fontSize: '1.15rem', color: '#ffffff', marginBottom: '8px' }}>1. Order Cancellation</h3>
+              <h3 style={{ fontSize: '1.2rem', color: '#ffffff', marginBottom: '8px' }}>1. Order Cancellation (Pre-Dispatch)</h3>
               <p>
-                You may cancel your order at any time <strong>before the product is dispatched</strong> by contacting support or from your account. Once an order has been handed over to the courier partner and an AWB tracking number has been generated, the order cannot be cancelled in transit.
+                You may request order cancellation free of penalty at any time <strong>prior to shipment dispatch</strong>. To cancel an order before dispatch:
+              </p>
+              <ul style={{ paddingLeft: '22px', marginTop: '8px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                <li>Email <a href="mailto:support@thebigpitch.com" style={{ color: '#ffffff', textDecoration: 'underline' }}>support@thebigpitch.com</a> with your Order ID or Razorpay Payment ID.</li>
+                <li>Upon verification that the package has not left our warehouse, an immediate 100% cancellation will be executed.</li>
+                <li>Your refund will be refunded directly back to your source payment method within 5-7 business days via Razorpay.</li>
+              </ul>
+              <p style={{ marginTop: '8px' }}>
+                <em>Post-Dispatch Rule:</em> Once an order has been picked up by the logistics carrier and an AWB tracking code has been issued, cancellation in transit is not permitted.
               </p>
             </section>
 
             <section>
-              <h3 style={{ fontSize: '1.15rem', color: '#ffffff', marginBottom: '8px' }}>2. 7-Day Replacement Window</h3>
+              <h3 style={{ fontSize: '1.2rem', color: '#ffffff', marginBottom: '8px' }}>2. 7-Day Replacement Window (Transit Damage or Defect)</h3>
               <p>
-                We offer a <strong>7-Day Replacement Guarantee</strong> for items received in defective, physically damaged, or non-functional condition. To be eligible for a replacement:
+                We stand behind our craftsmanship. We provide a <strong>7-Day Replacement Window</strong> from the recorded date of delivery if you receive an item that is:
               </p>
-              <ul style={{ paddingLeft: '20px', marginTop: '8px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                <li>Notify us within 7 days of package delivery at <a href="mailto:support@thebigpitch.com" style={{ color: '#ffffff', textDecoration: 'underline' }}>support@thebigpitch.com</a>.</li>
-                <li>Provide your Razorpay Payment ID or Order ID, along with a photograph or short video demonstrating the defect.</li>
-                <li>The item must be in its original packaging including cables, cases, and warranty cards.</li>
+              <ul style={{ paddingLeft: '22px', marginTop: '8px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                <li>Physically broken or damaged during transit.</li>
+                <li>Electrically non-operational upon unboxing (DOA - Dead on Arrival).</li>
+                <li>Mismatched against the specifications or product title ordered.</li>
               </ul>
             </section>
 
             <section>
-              <h3 style={{ fontSize: '1.15rem', color: '#ffffff', marginBottom: '8px' }}>3. Refund Process</h3>
+              <h3 style={{ fontSize: '1.2rem', color: '#ffffff', marginBottom: '8px' }}>3. How to Request a Replacement</h3>
+              <ol style={{ paddingLeft: '22px', marginTop: '8px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <li>Notify us within seven (7) days of delivery at <a href="mailto:support@thebigpitch.com" style={{ color: '#ffffff', textDecoration: 'underline' }}>support@thebigpitch.com</a>.</li>
+                <li>Attach your Order ID and 2-3 clear photographs or a short video demonstrating the functional defect or physical damage.</li>
+                <li>Our technical team will review the claim within 24 hours and issue a reverse courier pickup authorization.</li>
+                <li>The defective unit must be returned in its original rigid packaging box including all charging cables, protective pouches, and accessories.</li>
+                <li>Upon receipt and inspection at our warehouse, a brand-new replacement unit will be dispatched to your address with zero additional cost.</li>
+              </ol>
+            </section>
+
+            <section>
+              <h3 style={{ fontSize: '1.2rem', color: '#ffffff', marginBottom: '8px' }}>4. Refund Policy (When Replacement Is Unavailable)</h3>
               <p>
-                If a replacement unit is unavailable, a full refund will be initiated back to your original payment method (Bank Account, UPI ID, or Card) via Razorpay. Refunds are processed within <strong>5 to 7 business days</strong> as per banking network timelines.
+                If a replacement unit is unavailable in stock, we will issue a full 100% refund. Refunds are credited directly back to the original funding account:
               </p>
+              <ul style={{ paddingLeft: '22px', marginTop: '8px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                <li><strong>UPI Payments:</strong> Credited back to the original VPA/bank account within 24 to 48 hours.</li>
+                <li><strong>NetBanking & Debit/Credit Cards:</strong> Credited within 5 to 7 business days depending on your bank's clearing cycle.</li>
+              </ul>
+            </section>
+
+            <section>
+              <h3 style={{ fontSize: '1.2rem', color: '#ffffff', marginBottom: '8px' }}>5. Ineligible Return Conditions</h3>
+              <p>Replacements and refunds will not be issued in cases of:</p>
+              <ul style={{ paddingLeft: '22px', marginTop: '8px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                <li>Claims initiated after the expiration of the 7-day post-delivery replacement window.</li>
+                <li>Physical damage, water damage, or burns caused by user negligence or improper power surges.</li>
+                <li>Products returned missing original packaging, cables, or accessories.</li>
+              </ul>
             </section>
           </div>
         </div>
       )}
 
-      {/* 5. CONTACT US */}
+      {/* =========================================================================
+          5. DETAILED CONTACT US & GRIEVANCE REDRESSAL
+         ========================================================================= */}
       {currentPolicy === 'contact' && (
-        <div className="glass-card" style={{ padding: '36px 32px' }}>
+        <div className="glass-card" style={{ padding: '40px 36px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
             <Mail size={18} color="#ffffff" />
             <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--text-dim)', letterSpacing: '0.06em', fontWeight: 600 }}>
-              Customer Support
+              Official Customer Care & Headquarters
             </span>
           </div>
 
-          <h1 style={{ fontSize: '2rem', marginBottom: '8px', color: '#ffffff' }}>Contact Us</h1>
-          <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '28px' }}>
-            We're here to assist you with order status, courier delivery inquiries, and warranty claims.
+          <h1 style={{ fontSize: '2.2rem', marginBottom: '6px', color: '#ffffff' }}>Contact & Grievance Redressal</h1>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '32px' }}>
+            Our dedicated executive desk is available to assist you with order status, logistics tracking, invoice copies, and warranty replacements.
           </p>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px', marginBottom: '32px' }}>
-            <div style={{ background: '#121215', padding: '20px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
-              <Mail size={20} color="#ffffff" style={{ marginBottom: '8px' }} />
-              <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)', textTransform: 'uppercase', fontWeight: 600 }}>Email Support</div>
-              <div style={{ fontSize: '0.95rem', fontWeight: 600, color: '#ffffff', marginTop: '4px' }}>support@thebigpitch.com</div>
-              <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '2px' }}>Response within 24 hours</div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '16px', marginBottom: '36px' }}>
+            <div style={{ background: '#121215', padding: '24px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
+              <Mail size={22} color="#ffffff" style={{ marginBottom: '10px' }} />
+              <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)', textTransform: 'uppercase', fontWeight: 600 }}>Customer Support Email</div>
+              <div style={{ fontSize: '1rem', fontWeight: 700, color: '#ffffff', marginTop: '4px' }}>support@thebigpitch.com</div>
+              <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '4px' }}>Average response time: within 4 business hours</div>
             </div>
 
-            <div style={{ background: '#121215', padding: '20px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
-              <Phone size={20} color="#ffffff" style={{ marginBottom: '8px' }} />
-              <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)', textTransform: 'uppercase', fontWeight: 600 }}>Phone / WhatsApp</div>
-              <div style={{ fontSize: '0.95rem', fontWeight: 600, color: '#ffffff', marginTop: '4px' }}>+91 98200 12345</div>
-              <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '2px' }}>Mon - Sat, 10:00 AM - 7:00 PM IST</div>
+            <div style={{ background: '#121215', padding: '24px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
+              <Phone size={22} color="#ffffff" style={{ marginBottom: '10px' }} />
+              <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)', textTransform: 'uppercase', fontWeight: 600 }}>Helpline & WhatsApp Desk</div>
+              <div style={{ fontSize: '1rem', fontWeight: 700, color: '#ffffff', marginTop: '4px' }}>+91 98200 12345</div>
+              <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '4px' }}>Monday through Saturday, 9:30 AM to 6:30 PM IST</div>
             </div>
 
-            <div style={{ background: '#121215', padding: '20px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
-              <MapPin size={20} color="#ffffff" style={{ marginBottom: '8px' }} />
-              <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)', textTransform: 'uppercase', fontWeight: 600 }}>Registered Office</div>
-              <div style={{ fontSize: '0.85rem', color: '#ffffff', marginTop: '4px' }}>THE BIG PITCH Store</div>
-              <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Bandra Kurla Complex, Mumbai, Maharashtra 400051</div>
+            <div style={{ background: '#121215', padding: '24px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
+              <MapPin size={22} color="#ffffff" style={{ marginBottom: '10px' }} />
+              <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)', textTransform: 'uppercase', fontWeight: 600 }}>Warehouse & Registered Office</div>
+              <div style={{ fontSize: '0.88rem', fontWeight: 600, color: '#ffffff', marginTop: '4px' }}>THE BIG PITCH Technologies Pvt. Ltd.</div>
+              <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '4px' }}>
+                Unit 402, Trade Centre, Bandra Kurla Complex (BKC), Bandra East, Mumbai, Maharashtra 400051, India
+              </div>
             </div>
+          </div>
+
+          <div style={{
+            background: 'rgba(255, 255, 255, 0.03)',
+            borderRadius: 'var(--radius-md)',
+            border: '1px solid var(--border-subtle)',
+            padding: '24px'
+          }}>
+            <h3 style={{ fontSize: '1.1rem', color: '#ffffff', marginBottom: '8px' }}>
+              Statutory Grievance Redressal Mechanism
+            </h3>
+            <p style={{ fontSize: '0.86rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
+              In accordance with Consumer Protection (E-Commerce) Rules, 2020, every customer ticket is acknowledged with a unique tracking ticket within 48 hours and resolved within 15 business days. For escalated matters, write directly to <a href="mailto:grievance@thebigpitch.com" style={{ color: '#ffffff', textDecoration: 'underline' }}>grievance@thebigpitch.com</a> with your Order ID.
+            </p>
           </div>
         </div>
       )}
